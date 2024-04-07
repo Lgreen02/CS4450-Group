@@ -15,6 +15,6 @@ CS4450
 Professor Diaz
 
 ## Project Members:
-Gerardo Solis
-Carson Green 
+Gerardo Solis \
+Carson Green \
 Nick Hortua
