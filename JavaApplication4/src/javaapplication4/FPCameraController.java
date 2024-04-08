@@ -170,6 +170,11 @@ public class FPCameraController {
                 glVertex3f(x, -x, -x); // bottom right 
                 
                 // LEFT OF SQUARE 
+                glColor3f(1.0f,1.0f,0.0f);
+                glVertex3f(-x, -x, -x); // front bottom 
+                glVertex3f(-x, x,-x); // front top  
+                glVertex3f(-x, +x, +x); // back top 
+                glVertex3f(-x,-x, +x); // back bottom  
                 
                 // RIGHT OF SQUARE 
                 
