@@ -155,31 +155,48 @@ public class FPCameraController {
             float x = 2f;
             
             glBegin(GL_QUADS);
-                // TOP SIDE OF SQUARE
-                glColor3f(1.0f,0.0f,1.0f);
-                glVertex3f(x, x, -x);
-                glVertex3f(-x, x,-x);
-                glVertex3f( -x, x, x);
-                glVertex3f(x, x, x);
-                
-                // BACK OF SQUARE 
-                glColor3f(1.0f,1.0f,1.0f);
-                glVertex3f(x, x, -x); // top right
-                glVertex3f(-x, x,-x); // top left 
-                glVertex3f(-x,-x, -x); // bottom left
-                glVertex3f(x, -x, -x); // bottom right 
-                
-                // LEFT OF SQUARE 
-                glColor3f(1.0f,1.0f,0.0f);
-                glVertex3f(-x, -x, -x); // front bottom 
-                glVertex3f(-x, x,-x); // front top  
-                glVertex3f(-x, +x, +x); // back top 
-                glVertex3f(-x,-x, +x); // back bottom  
-                
-                // RIGHT OF SQUARE 
-                
-                // FRONT OF SQUARE 
-                
+            // TOP SIDE OF SQUARE
+            glColor3f(1.0f,0.0f,1.0f); // MAGENTA
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f( -x, x, x);
+            glVertex3f(x, x, x);
+
+            // BACK OF SQUARE 
+            glColor3f(1.0f,1.0f,1.0f); // WHITE
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x,-x, -x);
+            glVertex3f(x, -x, -x);
+
+            // LEFT OF SQUARE 
+            glColor3f(1.0f,1.0f,0.0f); // YELLOW
+            glVertex3f(-x, -x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x, +x, +x);
+            glVertex3f(-x,-x, +x);  
+
+             // RIGHT OF SQUARE 
+            glColor3f(0.0f,0.0f,1.0f);
+            glVertex3f(+x, +x, -x);
+            glVertex3f(+x, +x, +x); 
+            glVertex3f(+x, -x,+x); 
+            glVertex3f(+x,-x, -x); 
+            
+            // BOTTOM OF SQUARE 
+            //glColor3f(0.0f,0.0f,1.0f);
+            //glVertex3f(+x, +x, -x); 
+            //glVertex3f(+x, +x, +x);  
+            //glVertex3f(+x, -x,+x);
+            //glVertex3f(+x,-x, -x); 
+            
+            // FRONT OF SQUARE 
+            //glColor3f(0.0f,0.0f,1.0f);
+            //glVertex3f(+x, +x, -x); 
+            //glVertex3f(+x, +x, +x);  
+            //glVertex3f(+x, -x,+x);
+            //glVertex3f(+x,-x, -x); 
+            
             glEnd();
         }catch(Exception e){
             }
