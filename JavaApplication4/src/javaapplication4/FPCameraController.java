@@ -153,7 +153,6 @@ public class FPCameraController {
     private void render() {
         try{
             float x = 2f;
-            
             glBegin(GL_QUADS);
             // TOP SIDE OF SQUARE
             glColor3f(1.0f,0.0f,1.0f); // MAGENTA
@@ -184,18 +183,18 @@ public class FPCameraController {
             glVertex3f(+x,-x, -x); 
             
             // BOTTOM OF SQUARE 
-            //glColor3f(0.0f,0.0f,1.0f);
-            //glVertex3f(+x, +x, -x); 
-            //glVertex3f(+x, +x, +x);  
-            //glVertex3f(+x, -x,+x);
-            //glVertex3f(+x,-x, -x); 
+            glColor3f(0.5f,0.5f,1.5f);
+            glVertex3f(x, -x, +x);  // bottom right front 
+            glVertex3f(-x, -x, +x); // bottom left front  
+            glVertex3f(-x, -x,-x); // bottom left back
+            glVertex3f(+x,-x, -x); // bottom right back 
             
             // FRONT OF SQUARE 
-            //glColor3f(0.0f,0.0f,1.0f);
-            //glVertex3f(+x, +x, -x); 
-            //glVertex3f(+x, +x, +x);  
-            //glVertex3f(+x, -x,+x);
-            //glVertex3f(+x,-x, -x); 
+            glColor3f(0.5f,0.0f,1.0f);
+            glVertex3f(+x, +x, +x); 
+            glVertex3f(+x, -x, +x);  
+            glVertex3f(-x, -x,+x);
+            glVertex3f(-x,+x, +x); 
             
             glEnd();
         }catch(Exception e){
