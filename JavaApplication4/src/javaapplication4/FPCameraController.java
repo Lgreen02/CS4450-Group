@@ -97,7 +97,7 @@ public class FPCameraController {
         float dt = 0.0f; //length of frame
         float lastTime = 0.0f; // when the last frame was
         long time = 0;
-        float mouseSensitivity = 0.09f;
+        float mouseSensitivity = 0.01f;
         float movementSpeed = .35f;
         //hide the mouse
         Mouse.setGrabbed(true);
@@ -152,12 +152,51 @@ public class FPCameraController {
     }
     private void render() {
         try{
+            float x = 2f;
+            
             glBegin(GL_QUADS);
-            glColor3f(1.0f,0.0f,1.0f);
-            glVertex3f( 1.0f,-1.0f,-1.0f);
-            glVertex3f(-1.0f,-1.0f,-1.0f);
-            glVertex3f(-1.0f, 1.0f,-1.0f);
-            glVertex3f( 1.0f, 1.0f,-1.0f);
+            // TOP SIDE OF SQUARE
+            glColor3f(1.0f,0.0f,1.0f); // MAGENTA
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f( -x, x, x);
+            glVertex3f(x, x, x);
+
+            // BACK OF SQUARE 
+            glColor3f(1.0f,1.0f,1.0f); // WHITE
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x,-x, -x);
+            glVertex3f(x, -x, -x);
+
+            // LEFT OF SQUARE 
+            glColor3f(1.0f,1.0f,0.0f); // YELLOW
+            glVertex3f(-x, -x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x, +x, +x);
+            glVertex3f(-x,-x, +x);  
+
+             // RIGHT OF SQUARE 
+            glColor3f(0.0f,0.0f,1.0f);
+            glVertex3f(+x, +x, -x);
+            glVertex3f(+x, +x, +x); 
+            glVertex3f(+x, -x,+x); 
+            glVertex3f(+x,-x, -x); 
+            
+            // BOTTOM OF SQUARE 
+            //glColor3f(0.0f,0.0f,1.0f);
+            //glVertex3f(+x, +x, -x); 
+            //glVertex3f(+x, +x, +x);  
+            //glVertex3f(+x, -x,+x);
+            //glVertex3f(+x,-x, -x); 
+            
+            // FRONT OF SQUARE 
+            //glColor3f(0.0f,0.0f,1.0f);
+            //glVertex3f(+x, +x, -x); 
+            //glVertex3f(+x, +x, +x);  
+            //glVertex3f(+x, -x,+x);
+            //glVertex3f(+x,-x, -x); 
+            
             glEnd();
         }catch(Exception e){
             }
