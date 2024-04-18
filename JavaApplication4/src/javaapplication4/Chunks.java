@@ -25,7 +25,7 @@ public class Chunks {
         for(int i=0; i<30;i++){
             for(int j=0; j<30;j++){
                 for(int k=0; k<30;k++){
-                    
+                  //if(type != air) this will save resources and make more like minecraft
                   //renderWithTex(i, j, k, chunk[i][j][k].getType()); this method will apply the render method and do the texture mapping
                 }
             }
