@@ -23,6 +23,8 @@ public class FPCameraController {
 //the rotation around the X axis of the camera
     private float pitch = 0.0f;
     private Vector3Float me;
+    private int chunkSize = 4;
+    private Chunks[][] chunk;
     public FPCameraController(float x, float y, float z)
     {
 //instantiate position Vector3f to the x y z params.
@@ -150,6 +152,7 @@ public class FPCameraController {
         }
         Display.destroy();
     }
+    // render method for Checkpoint 1
     private void render() {
         try{
             float x = 2f;

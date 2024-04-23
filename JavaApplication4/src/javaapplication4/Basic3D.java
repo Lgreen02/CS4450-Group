@@ -14,12 +14,13 @@ import org.lwjgl.util.glu.GLU;
  * @author Admin
  */
 public class Basic3D {
-    private FPCameraController fp = new FPCameraController(0f,0f,0f);
+    private FPCameraController fp;
     private DisplayMode displayMode;
     public void start() {
         try {
             createWindow();
             initGL();
+            fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();//render();
         } catch (Exception e) {
        e.printStackTrace();
@@ -40,7 +41,7 @@ public class Basic3D {
         }
         
         Display.setDisplayMode(displayMode);
-        Display.setTitle("Checkpoint1");
+        Display.setTitle("Checkpoint 2");
         Display.create();
     }
     private void initGL() {
@@ -51,6 +52,9 @@ public class Basic3D {
         displayMode.getHeight(), 0.1f, 300.0f);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glEnable(GL_DEPTH_TEST);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
 }
     public static void main(String[] args) {
