@@ -19,11 +19,12 @@ public class Block {
     
     public enum BlockType{
         BlockType_Grass(0),
-        BlockType_Sand(1),
-        BlockType_Water(2),
-        BlockType_Dirt(3),
+        BlockType_Dirt(1),
+        BlockType_Sand(2),
+        BlockType_Water(3),
         BlockType_Stone(4),
-        BlockType_Bedrock(5);
+        BlockType_Iron(5),
+        BlockType_Bedrock(6);
         
         private int BlockID;
         
