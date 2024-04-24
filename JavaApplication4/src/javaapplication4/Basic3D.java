@@ -14,12 +14,13 @@ import org.lwjgl.util.glu.GLU;
  * @author Admin
  */
 public class Basic3D {
-    private FPCameraController fp = new FPCameraController(0f,0f,0f);
+    private FPCameraController fp;
     private DisplayMode displayMode;
     public void start() {
         try {
             createWindow();
             initGL();
+            fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();//render();
         } catch (Exception e) {
        e.printStackTrace();
@@ -29,17 +30,18 @@ public class Basic3D {
         Display.setFullscreen(false);
         DisplayMode d[] =
         Display.getAvailableDisplayModes();
-    for (int i = 0; i < d.length; i++) {
-        if (d[i].getWidth() == 640
-            && d[i].getHeight() == 480
-            && d[i].getBitsPerPixel() == 32) {
-            
-            displayMode = d[i];
-            break;
-    }
-    }
+        for (int i = 0; i < d.length; i++) {
+            if (d[i].getWidth() == 640
+                && d[i].getHeight() == 480
+                && d[i].getBitsPerPixel() == 32) {
+
+                displayMode = d[i];
+                break;
+            }
+        }
+        
         Display.setDisplayMode(displayMode);
-        Display.setTitle("Hey Mom! I am using”+“OpenGL!!!");
+        Display.setTitle("Checkpoint 2");
         Display.create();
     }
     private void initGL() {
@@ -50,6 +52,10 @@ public class Basic3D {
         displayMode.getHeight(), 0.1f, 300.0f);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glEnable(GL_DEPTH_TEST);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnable(GL_DEPTH_TEST);
 }
     public static void main(String[] args) {
     Basic3D basic = new Basic3D();

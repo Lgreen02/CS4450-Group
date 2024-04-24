@@ -23,6 +23,8 @@ public class FPCameraController {
 //the rotation around the X axis of the camera
     private float pitch = 0.0f;
     private Vector3Float me;
+    private int chunkSize = 4;
+    private Chunks[][] chunk;
     public FPCameraController(float x, float y, float z)
     {
 //instantiate position Vector3f to the x y z params.
@@ -97,7 +99,7 @@ public class FPCameraController {
         float dt = 0.0f; //length of frame
         float lastTime = 0.0f; // when the last frame was
         long time = 0;
-        float mouseSensitivity = 0.09f;
+        float mouseSensitivity = 0.01f;
         float movementSpeed = .35f;
         //hide the mouse
         Mouse.setGrabbed(true);
@@ -150,14 +152,53 @@ public class FPCameraController {
         }
         Display.destroy();
     }
+    // render method for Checkpoint 1
     private void render() {
         try{
+            float x = 2f;
             glBegin(GL_QUADS);
-            glColor3f(1.0f,0.0f,1.0f);
-            glVertex3f( 1.0f,-1.0f,-1.0f);
-            glVertex3f(-1.0f,-1.0f,-1.0f);
-            glVertex3f(-1.0f, 1.0f,-1.0f);
-            glVertex3f( 1.0f, 1.0f,-1.0f);
+            // TOP SIDE OF SQUARE
+            glColor3f(1.0f,0.0f,1.0f); // MAGENTA
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f( -x, x, x);
+            glVertex3f(x, x, x);
+
+            // BACK OF SQUARE 
+            glColor3f(1.0f,1.0f,1.0f); // WHITE
+            glVertex3f(x, x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x,-x, -x);
+            glVertex3f(x, -x, -x);
+
+            // LEFT OF SQUARE 
+            glColor3f(1.0f,1.0f,0.0f); // YELLOW
+            glVertex3f(-x, -x, -x);
+            glVertex3f(-x, x,-x);
+            glVertex3f(-x, +x, +x);
+            glVertex3f(-x,-x, +x);  
+
+             // RIGHT OF SQUARE 
+            glColor3f(0.0f,0.0f,1.0f);
+            glVertex3f(+x, +x, -x);
+            glVertex3f(+x, +x, +x); 
+            glVertex3f(+x, -x,+x); 
+            glVertex3f(+x,-x, -x); 
+            
+            // BOTTOM OF SQUARE 
+            glColor3f(0.5f,0.5f,1.5f);
+            glVertex3f(x, -x, +x);  // bottom right front 
+            glVertex3f(-x, -x, +x); // bottom left front  
+            glVertex3f(-x, -x,-x); // bottom left back
+            glVertex3f(+x,-x, -x); // bottom right back 
+            
+            // FRONT OF SQUARE 
+            glColor3f(0.5f,0.0f,1.0f);
+            glVertex3f(+x, +x, +x); 
+            glVertex3f(+x, -x, +x);  
+            glVertex3f(-x, -x,+x);
+            glVertex3f(-x,+x, +x); 
+            
             glEnd();
         }catch(Exception e){
             }
