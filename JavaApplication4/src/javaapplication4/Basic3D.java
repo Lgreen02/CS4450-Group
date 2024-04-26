@@ -1,3 +1,12 @@
+/***************************************************************
+* file: Basic3D.java
+* author(s): 
+* class: CS 4450 – Computer Graphics
+*
+* assignment: Final Project
+* date last modified: 
+****************************************************************/
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,10 +18,6 @@ import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
 
-/**
- *
- * @author Admin
- */
 public class Basic3D {
     private FPCameraController fp;
     private DisplayMode displayMode;
@@ -23,13 +28,12 @@ public class Basic3D {
             fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();//render();
         } catch (Exception e) {
-       e.printStackTrace();
-    }
-}
+            e.printStackTrace();
+        }
+    }      
     private void createWindow() throws Exception{
         Display.setFullscreen(false);
-        DisplayMode d[] =
-        Display.getAvailableDisplayModes();
+        DisplayMode d[] = Display.getAvailableDisplayModes();
         for (int i = 0; i < d.length; i++) {
             if (d[i].getWidth() == 640
                 && d[i].getHeight() == 480
@@ -56,10 +60,10 @@ public class Basic3D {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
-}
+    }
     public static void main(String[] args) {
-    Basic3D basic = new Basic3D();
-    basic.start();
+        Basic3D basic = new Basic3D();
+        basic.start();
     }
 }
 

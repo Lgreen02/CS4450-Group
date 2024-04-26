@@ -62,5 +62,4 @@ public class Block {
     public int GetID(){
         return type.GetID();
     }
-    
 }
