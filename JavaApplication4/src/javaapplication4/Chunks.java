@@ -190,8 +190,10 @@ public class Chunks {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    
-                    if(y > 0 && y<=15){
+                    if(y==0){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
+                    }
+                    else{
                         if(r.nextFloat()>0.6f){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
                         }
@@ -204,9 +206,7 @@ public class Chunks {
                         
                     }
                     
-                    else{
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
-                    }
+                    
                     }
 
                 } 
