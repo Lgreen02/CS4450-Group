@@ -18,37 +18,51 @@ import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
 
+
 public class Basic3D {
     private FPCameraController fp;
     private DisplayMode displayMode;
+    
+    //method: start
+    //purpose: creates window
     public void start() {
+        System.out.println("Press ENTER to create a new world.");
         try {
+            
             createWindow();
             initGL();
             fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();//render();
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
         }
-    }      
+    }
+    //method: createWindow
+    //purpose: sets up window parameters
     private void createWindow() throws Exception{
         Display.setFullscreen(false);
-        DisplayMode d[] = Display.getAvailableDisplayModes();
+        DisplayMode d[] =
+        Display.getAvailableDisplayModes();
         for (int i = 0; i < d.length; i++) {
-            if (d[i].getWidth() == 640
-                && d[i].getHeight() == 480
-                && d[i].getBitsPerPixel() == 32) {
-
+            if (d[i].getWidth() == 640 && d[i].getHeight() == 480 && d[i].getBitsPerPixel() == 32) {
                 displayMode = d[i];
                 break;
             }
         }
-        
         Display.setDisplayMode(displayMode);
-        Display.setTitle("Checkpoint 2");
+        Display.setTitle("Minecraft");
         Display.create();
     }
+    //method: initGL
+    //purpose: initiates metrices and other specifications
     private void initGL() {
+        glEnable(GL_TEXTURE_2D);
+        glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnable(GL_DEPTH_TEST);
+
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -56,15 +70,12 @@ public class Basic3D {
         displayMode.getHeight(), 0.1f, 300.0f);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glEnable(GL_DEPTH_TEST);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_COLOR_ARRAY);
-        glEnable(GL_DEPTH_TEST);
     }
+    //method: main
+    //purpose: driver
     public static void main(String[] args) {
         Basic3D basic = new Basic3D();
         basic.start();
     }
+    
 }
-
-

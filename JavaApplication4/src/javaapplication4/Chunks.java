@@ -161,11 +161,12 @@ public class Chunks {
     }
 
     public Chunks(int startX, int startY, int startZ) {
-        try{
-            texture = TextureLoader.getTexture("PNG",ResourceLoader.getResourceAsStream("terrain.png"));
-        }
-        catch(Exception e){
-            System.out.print("ER-ROAR!");
+        try {
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("terrain.png"));
+            System.out.println("Texture loaded: " + texture);
+            System.out.println("Texture ID: " + texture.getTextureID());
+        } catch (Exception e) {
+            e.printStackTrace(); // This will give more detailed error information if loading fails
         }
 
         r = new Random();
