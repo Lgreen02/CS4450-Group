@@ -68,6 +68,7 @@ public class Chunks {
         FloatBuffer VertexTextureData = BufferUtils.createFloatBuffer((CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE)*6*12);
 
         float height;
+        r = new Random();
         for(float x = 0; x < CHUNK_SIZE; x++)
         {
             for(float z = 0; z < CHUNK_SIZE; z++)
@@ -75,13 +76,28 @@ public class Chunks {
                 // Height Randomization
                 int i = (int)(startX + x * ((300 - startX)/ 640));
                 int j = (int)(startZ + z * ((300 - startZ)/ 480));
-                height = 1+Math.abs((startY + (int) (100 * noise.getNoise(i, j))* CUBE_LENGTH));
-
+                height = 1+Math.abs((startY + (int) (180 * noise.getNoise(i, j))* CUBE_LENGTH));
+                System.out.println(height);
                 for(float y = 0; y < height; y++)
                 {
                     VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), (y*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
                     VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)y][(int)z])));
-                    VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                    if(y==height-1){
+                        if(r.nextFloat()>0.8f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Grass)));
+                        }                       
+                        else if(r.nextFloat()>0.4f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Water)));
+                        
+                        }
+                        else if(r.nextFloat()>0.0f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Sand)));
+                        }
+                        
+                    }
+                    else{
+                        VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                    }
                 }
             }
         }
@@ -174,7 +190,7 @@ public class Chunks {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    if(y>15){
+                    if(y>=15){
                         if(r.nextFloat()>0.8f){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Grass);
                         }                       
