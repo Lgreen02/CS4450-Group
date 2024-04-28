@@ -162,7 +162,7 @@ public class Chunks {
 
     public Chunks(int startX, int startY, int startZ) {
         try {
-            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("terrain.png"));
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("C:\\Users\\Admin\\Documents\\4700\\CS4450-Group\\JavaApplication4\\src\\javaapplication4\\terrain.png"));
             System.out.println("Texture loaded: " + texture);
             System.out.println("Texture ID: " + texture.getTextureID());
         } catch (Exception e) {
@@ -174,24 +174,38 @@ public class Chunks {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    if(r.nextFloat()>0.8f){
+                    if(y>15){
+                        if(r.nextFloat()>0.8f){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Grass);
-                    }else if(r.nextFloat()>0.6f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
-                    }else if(r.nextFloat()>0.4f){
+                        }                       
+                        else if(r.nextFloat()>0.4f){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Water);
-                    }else if(r.nextFloat()>0.2f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
-                    }else if(r.nextFloat()>0.1f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
-                    }else if(r.nextFloat()>0.0f){
+                        }
+                        else if(r.nextFloat()>0.0f){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Sand);
-                    }else{
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Iron);
+                        }
                     }
-                }
+                    else if(y > 0 && y<15){
+                        if(r.nextFloat()>0.6f){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
+                        }
+                        else if(r.nextFloat()>0.2f){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
+                        }
+                        else{
+                            Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Iron);
+                        }
+                        
+                    }
+                    
+                    else{
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
+                    }
+                    }
+
+                } 
             }
-        }
+        
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
         VBOTextureHandle = glGenBuffers();
@@ -200,7 +214,8 @@ public class Chunks {
         StartZ = startZ;
         rebuildMesh(startX, startY, startZ);
     }
-
+    
+    
     //tells how to texure each type of block
     public static float[] createTexCube(float x, float y, Block block) {
         float offset = (1024f/16)/1024f;
