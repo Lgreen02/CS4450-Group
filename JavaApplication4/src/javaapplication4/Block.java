@@ -4,7 +4,7 @@
 * class: CS 4450 – Computer Graphics
 *
 * assignment: Semester Project
-* date last modified: 4/22/2024
+* date last modified: 4/28/2024
 *
 * purpose: This class is responsible for defining functions regarding for blocks
 * to be generated in our program, such as type, ID, and coordinates.
@@ -23,7 +23,7 @@ public class Block {
         BlockType_Sand(1),
         BlockType_Water(2),
         BlockType_Stone(4),
-        BlockType_Iron(6),
+        BlockType_Coal(6),
         BlockType_Bedrock(5);
         
         private int BlockID;

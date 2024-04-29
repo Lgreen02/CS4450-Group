@@ -1,10 +1,12 @@
 /***************************************************************
-* file: Basic3D.java
-* author(s): 
+* file: MinecraftDriver.java
+* author(s): Carson Green, Gerardo Solis, Nick Hortua
 * class: CS 4450 – Computer Graphics
 *
 * assignment: Final Project
-* date last modified: 
+* date last modified: 4/28/24
+* 
+* purpose: Main driver class for the program.
 ****************************************************************/
 
 /*
@@ -12,6 +14,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package javaapplication4;
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -19,9 +23,11 @@ import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
 
 
-public class Basic3D {
+public class MinecraftDriver {
     private FPCameraController fp;
     private DisplayMode displayMode;
+    private FloatBuffer lightPosition;
+    private FloatBuffer whiteLight;
     
     //method: start
     //purpose: creates window
@@ -62,6 +68,15 @@ public class Basic3D {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
+        
+        // initializing and setting light positions
+        initLightArrays();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition); 
+        glLight(GL_LIGHT0, GL_SPECULAR, whiteLight);
+        glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight);
+        glLight(GL_LIGHT0, GL_AMBIENT, whiteLight);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glMatrixMode(GL_PROJECTION);
@@ -71,10 +86,21 @@ public class Basic3D {
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     }
+    
+    //method: initLightArrays
+    //purpose: initializes the position and RGB color values for our lighting
+    private void initLightArrays(){
+        lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
+        
+        whiteLight = BufferUtils.createFloatBuffer(4);
+        whiteLight.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
+    }
+    
     //method: main
     //purpose: driver
     public static void main(String[] args) {
-        Basic3D basic = new Basic3D();
+        MinecraftDriver basic = new MinecraftDriver();
         basic.start();
     }
     

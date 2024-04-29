@@ -4,7 +4,7 @@
 * class: CS 4450 – Computer Graphics
 *
 * assignment: Semester Project
-* date last modified: 4/22/2024
+* date last modified: 4/28/2024
 *
 * purpose: This class is responsible for defining functions involved with chunk generation.
 ****************************************************************/
@@ -178,7 +178,7 @@ public class Chunks {
 
     public Chunks(int startX, int startY, int startZ) {
         try {
-            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("C:\\Users\\Admin\\Documents\\4700\\CS4450-Group\\JavaApplication4\\src\\javaapplication4\\terrain.png"));
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("C:\\Users\\nickh\\Documents\\CollegeStuff\\CPP\\SP24\\CS4450\\CS4450-Group\\JavaApplication4\\src\\javaapplication4\\terrain.png"));
             System.out.println("Texture loaded: " + texture);
             System.out.println("Texture ID: " + texture.getTextureID());
         } catch (Exception e) {
@@ -201,7 +201,7 @@ public class Chunks {
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
                         }
                         else{
-                            Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Iron);
+                            Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Coal);
                         }
                         
                     }
@@ -222,24 +222,24 @@ public class Chunks {
     }
     
     
-    //tells how to texure each type of block
+    // tells how to texture each type of block
     public static float[] createTexCube(float x, float y, Block block) {
         float offset = (1024f/16)/1024f;
         switch (block.GetID()) {
             case 0:
-                return cubeTex(x,y,offset,3,10,4,1,3,1);
+                return cubeTex(x,y,offset,3,10,4,1,3,1); // grass
             case 1:
-                return cubeTex(x,y,offset,3,2,3,2,3,2);
+                return cubeTex(x,y,offset,3,2,3,2,3,2); // sand
             case 2:
-                return cubeTex(x,y,offset,15,13,15,13,15,13);
+                return cubeTex(x,y,offset,2,12,2,12,2,12); // water
             case 3:
-                return cubeTex(x,y,offset,3,1,3,1,3,1);
+                return cubeTex(x,y,offset,3,1,3,1,3,1); // dirt
             case 4:
-                return cubeTex(x,y,offset,2,1,2,1,2,1);
+                return cubeTex(x,y,offset,2,1,2,1,2,1); // stone
             case 5:
-                return cubeTex(x,y,offset,2,2,2,2,2,2);
+                return cubeTex(x,y,offset,2,2,2,2,2,2); // bedrock
             case 6:
-                return cubeTex(x,y,offset,10,10,10,10,10,10);
+                return cubeTex(x,y,offset,2,3,2,3,2,3); // iron
             default:
                 System.out.println("not found");
                 return null;
