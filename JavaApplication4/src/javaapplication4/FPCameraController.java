@@ -38,8 +38,8 @@ public class FPCameraController {
         position = new Vector3f(x, y, z);
         lPosition = new Vector3f(x,y,z);
         lPosition.x = 0f;
-        lPosition.y = 30f;
-        lPosition.z = 0f;
+        lPosition.y = 20f;
+        lPosition.z = 160f;
     }
     public void yaw(float amount) {
         //increment the yaw by the amount param

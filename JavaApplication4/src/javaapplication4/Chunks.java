@@ -178,7 +178,7 @@ public class Chunks {
 
     public Chunks(int startX, int startY, int startZ) {
         try {
-            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("C:\\Users\\nickh\\Documents\\CollegeStuff\\CPP\\SP24\\CS4450\\CS4450-Group\\JavaApplication4\\src\\javaapplication4\\terrain.png"));
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("javaapplication4/terrain.png"));
             System.out.println("Texture loaded: " + texture);
             System.out.println("Texture ID: " + texture.getTextureID());
         } catch (Exception e) {

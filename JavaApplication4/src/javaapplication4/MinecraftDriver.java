@@ -9,10 +9,6 @@
 * purpose: Main driver class for the program.
 ****************************************************************/
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package javaapplication4;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
@@ -94,7 +90,7 @@ public class MinecraftDriver {
         lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
         
         whiteLight = BufferUtils.createFloatBuffer(4);
-        whiteLight.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
+        whiteLight.put(2.8f).put(2.8f).put(2.8f).put(0.0f).flip();
     }
     
     //method: main
