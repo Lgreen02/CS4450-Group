@@ -82,16 +82,15 @@ public class Chunks {
                 {
                     VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), (y*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
                     VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)y][(int)z])));
+                    
                     if(y==height-1){
                         if(r.nextFloat()>0.8f){
-                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Grass)));
-                        }                       
-                        else if(r.nextFloat()>0.4f){
-                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Water)));
-                        
-                        }
-                        else if(r.nextFloat()>0.0f){
                             VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Sand)));
+                        }                       
+                        
+                        else if(r.nextFloat()>0.0f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Grass)));
+                            
                         }
                         
                     }
@@ -99,6 +98,15 @@ public class Chunks {
                         VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
                     }
                 }
+                if( height < 4){
+                    float q = height;
+                        while( q<7){
+                            VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), (q*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
+                        VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)q][(int)z])));
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Water)));
+                        q+=1;
+                        } 
+                    }
             }
         }
 
