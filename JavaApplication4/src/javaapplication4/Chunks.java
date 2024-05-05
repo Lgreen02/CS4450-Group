@@ -4,7 +4,7 @@
 * class: CS 4450 – Computer Graphics
 *
 * assignment: Semester Project
-* date last modified: 4/22/2024
+* date last modified: 4/28/2024
 *
 * purpose: This class is responsible for defining functions involved with chunk generation.
 ****************************************************************/
@@ -68,6 +68,7 @@ public class Chunks {
         FloatBuffer VertexTextureData = BufferUtils.createFloatBuffer((CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE)*6*12);
 
         float height;
+        r = new Random();
         for(float x = 0; x < CHUNK_SIZE; x++)
         {
             for(float z = 0; z < CHUNK_SIZE; z++)
@@ -75,13 +76,28 @@ public class Chunks {
                 // Height Randomization
                 int i = (int)(startX + x * ((300 - startX)/ 640));
                 int j = (int)(startZ + z * ((300 - startZ)/ 480));
-                height = 1+Math.abs((startY + (int) (100 * noise.getNoise(i, j))* CUBE_LENGTH));
-
+                height = 1+Math.abs((startY + (int) (180 * noise.getNoise(i, j))* CUBE_LENGTH));
+                System.out.println(height);
                 for(float y = 0; y < height; y++)
                 {
                     VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), (y*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
                     VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)y][(int)z])));
-                    VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                    if(y==height-1){
+                        if(r.nextFloat()>0.8f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Grass)));
+                        }                       
+                        else if(r.nextFloat()>0.4f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Water)));
+                        
+                        }
+                        else if(r.nextFloat()>0.0f){
+                            VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Sand)));
+                        }
+                        
+                    }
+                    else{
+                        VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                    }
                 }
             }
         }
@@ -174,24 +190,28 @@ public class Chunks {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    if(r.nextFloat()>0.8f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Grass);
-                    }else if(r.nextFloat()>0.6f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
-                    }else if(r.nextFloat()>0.4f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Water);
-                    }else if(r.nextFloat()>0.2f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
-                    }else if(r.nextFloat()>0.1f){
+                    if(y==0){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
-                    }else if(r.nextFloat()>0.0f){
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Sand);
-                    }else{
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Iron);
                     }
-                }
+                    else{
+                        if(r.nextFloat()>0.6f){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
+                        }
+                        else if(r.nextFloat()>0.2f){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
+                        }
+                        else{
+                            Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Coal);
+                        }
+                        
+                    }
+                    
+                    
+                    }
+
+                } 
             }
-        }
+        
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
         VBOTextureHandle = glGenBuffers();
@@ -200,25 +220,26 @@ public class Chunks {
         StartZ = startZ;
         rebuildMesh(startX, startY, startZ);
     }
-
-    //tells how to texure each type of block
+    
+    
+    // tells how to texture each type of block
     public static float[] createTexCube(float x, float y, Block block) {
         float offset = (1024f/16)/1024f;
         switch (block.GetID()) {
             case 0:
-                return cubeTex(x,y,offset,3,10,4,1,3,1);
+                return cubeTex(x,y,offset,3,10,4,1,3,1); // grass
             case 1:
-                return cubeTex(x,y,offset,3,2,3,2,3,2);
+                return cubeTex(x,y,offset,3,2,3,2,3,2); // sand
             case 2:
-                return cubeTex(x,y,offset,15,13,15,13,15,13);
+                return cubeTex(x,y,offset,2,12,2,12,2,12); // water
             case 3:
-                return cubeTex(x,y,offset,3,1,3,1,3,1);
+                return cubeTex(x,y,offset,3,1,3,1,3,1); // dirt
             case 4:
-                return cubeTex(x,y,offset,2,1,2,1,2,1);
+                return cubeTex(x,y,offset,2,1,2,1,2,1); // stone
             case 5:
-                return cubeTex(x,y,offset,2,2,2,2,2,2);
+                return cubeTex(x,y,offset,2,2,2,2,2,2); // bedrock
             case 6:
-                return cubeTex(x,y,offset,10,10,10,10,10,10);
+                return cubeTex(x,y,offset,2,3,2,3,2,3); // iron
             default:
                 System.out.println("not found");
                 return null;

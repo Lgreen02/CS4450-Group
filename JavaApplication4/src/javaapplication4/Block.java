@@ -4,7 +4,7 @@
 * class: CS 4450 – Computer Graphics
 *
 * assignment: Semester Project
-* date last modified: 4/22/2024
+* date last modified: 4/28/2024
 *
 * purpose: This class is responsible for defining functions regarding for blocks
 * to be generated in our program, such as type, ID, and coordinates.
@@ -19,12 +19,12 @@ public class Block {
     
     public enum BlockType{
         BlockType_Grass(0),
-        BlockType_Dirt(1),
-        BlockType_Sand(2),
-        BlockType_Water(3),
+        BlockType_Dirt(3),
+        BlockType_Sand(1),
+        BlockType_Water(2),
         BlockType_Stone(4),
-        BlockType_Iron(5),
-        BlockType_Bedrock(6);
+        BlockType_Coal(6),
+        BlockType_Bedrock(5);
         
         private int BlockID;
         
