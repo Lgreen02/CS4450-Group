@@ -9,12 +9,14 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.Sys;
+import java.io.IOException;  // Add this import statement
 
 /**
  *
  * @author Admin
  */
 public class FPCameraController {
+
     //3d vector to store the camera's position in
     private Vector3f position = null;
     private Vector3f lPosition = null;
@@ -137,6 +139,7 @@ public class FPCameraController {
             camera.lookThrough();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             chunksObject.render();
+
             // you would draw your scene here.
             // render();
             //draw the buffer to the screen
