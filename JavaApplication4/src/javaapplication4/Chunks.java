@@ -248,6 +248,8 @@ public class Chunks {
                 return cubeTex(x,y,offset,2,2,2,2,2,2); // bedrock
             case 6:
                 return cubeTex(x,y,offset,2,3,2,3,2,3); // iron
+            case 7:
+                return cubeTex(x,y,offset,6,5,7,5,6,5); // cactus
             default:
                 System.out.println("not found");
                 return null;
