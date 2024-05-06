@@ -79,6 +79,7 @@ public class Chunks {
                 height = 1+Math.abs((startY + (int) (180 * noise.getNoise(i, j))* CUBE_LENGTH));
                 System.out.println(height);
                 boolean isTopSand = false;
+                boolean isTopGrass = false;
                 for(float y = 0; y < height; y++)
                 {
                    
@@ -93,7 +94,7 @@ public class Chunks {
                         
                         else if(r.nextFloat()>0.0f){
                             VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Grass)));
-                            
+                            isTopGrass = true;
                         }
                         
                     }
@@ -122,6 +123,14 @@ public class Chunks {
                                     w+=1;
                                 }
                             }
+                if(r.nextFloat() > 0.97f && isTopGrass){
+                    float w = height;
+                    
+                    VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), ((w)*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
+                    VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)w][(int)z])));
+                    VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Pumpkin)));
+                      
+                }
             }
         }
 
@@ -265,6 +274,8 @@ public class Chunks {
                 return cubeTex(x,y,offset,2,3,2,3,2,3); // iron
             case 7:
                 return cubeTex(x,y,offset,6,5,7,5,6,5); // cactus
+            case 8:
+                return cubeTex(x,y,offset,7,7,7,8,7,8); // pumpkin
             default:
                 System.out.println("not found");
                 return null;

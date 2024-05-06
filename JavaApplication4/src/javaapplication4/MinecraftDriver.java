@@ -24,7 +24,7 @@ public class MinecraftDriver {
     private FloatBuffer lightPosition;
     private FloatBuffer whiteLight;
     private float dayTime = 0.0f;
-    private final float DAY_LENGTH = 1200.0f; // 10 seconds for day and 10 seconds for night
+    private final float DAY_LENGTH = 600.0f; // 10 seconds for day and 10 seconds for night
 
     //method: start
     //purpose: creates window
@@ -106,7 +106,10 @@ public class MinecraftDriver {
         float r = 0.3f + 0.7f * intensity; // Red component
         float g = 0.3f + 0.7f * intensity; // Green component
         float b = 0.5f + 0.5f * intensity; // Blue component
-        whiteLight.put(r).put(g).put(b).put(1.0f).flip();
+        
+        
+            whiteLight.put(r+5).put(g+5).put(b+5).put(1.0f).flip();
+        
 
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
         glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight);
