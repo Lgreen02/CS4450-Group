@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/Jerry/CS4450-Group/JavaApplication4/src/javaapplication4/FPCameraController.java</file>
-            <file>file:/C:/Users/Jerry/CS4450-Group/JavaApplication4/src/javaapplication4/Basic3D.java</file>
             <file>file:/C:/Users/Jerry/CS4450-Group/JavaApplication4/src/javaapplication4/Chunks.java</file>
-=======
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/Chunks.java</file>
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/Vector3Float.java</file>
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/SimplexNoise_octave.java</file>
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/SimplexNoise.java</file>
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/FPCameraController.java</file>
-            <file>file:/C:/Users/Admin/Documents/4700/CS4450-Group/JavaApplication4/src/javaapplication4/Block.java</file>
->>>>>>> 7c23a3281d7a78e28d59c9ef3bc4522ec5c2305b
+            <file>file:/C:/Users/Jerry/CS4450-Group/JavaApplication4/src/javaapplication4/MinecraftDriver.java</file>
         </group>
     </open-files>
 </project-private>
