@@ -78,14 +78,17 @@ public class Chunks {
                 int j = (int)(startZ + z * ((300 - startZ)/ 480));
                 height = 1+Math.abs((startY + (int) (180 * noise.getNoise(i, j))* CUBE_LENGTH));
                 System.out.println(height);
+                boolean isTopSand = false;
                 for(float y = 0; y < height; y++)
                 {
+                   
                     VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), (y*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
                     VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)y][(int)z])));
                     
                     if(y==height-1){
                         if(r.nextFloat()>0.8f){
                             VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Sand)));
+                            isTopSand = true;
                         }                       
                         
                         else if(r.nextFloat()>0.0f){
@@ -98,6 +101,7 @@ public class Chunks {
                         VertexTextureData.put(createTexCube(0, 0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
                     }
                 }
+                
                 if( height < 4){
                     float q = height;
                         while( q<5){
@@ -106,7 +110,18 @@ public class Chunks {
                             VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Water)));
                             q+=1;
                         } 
+                        isTopSand = false;
                     }
+                if(r.nextFloat() > 0.95f && isTopSand){
+                                
+                                float w = height;
+                                while(w<=height+3){
+                                    VertexPositionData.put(createCube((startX + x * CUBE_LENGTH), ((w-1)*CUBE_LENGTH+(float)(CHUNK_SIZE*-1.5)),(startZ+z*CUBE_LENGTH) + (float)(CHUNK_SIZE*1.5)));
+                                    VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int)x][(int)w][(int)z])));
+                                    VertexTextureData.put(createTexCube(0, 0, new Block(Block.BlockType.BlockType_Cactus)));
+                                    w+=1;
+                                }
+                            }
             }
         }
 
