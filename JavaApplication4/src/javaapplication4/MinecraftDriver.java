@@ -89,26 +89,25 @@ public class MinecraftDriver {
         lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
         
         whiteLight = BufferUtils.createFloatBuffer(4);
-        whiteLight.put(2.8f).put(2.8f).put(2.8f).put(0.0f).flip();
+        whiteLight.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
     }
     
     public void updateDayNightCycle() {
         dayTime = (dayTime + 1) % DAY_LENGTH;
         float intensity = (float)Math.cos((dayTime / DAY_LENGTH) * Math.PI); // Adjusted for full cycle
-        intensity = (intensity + 1) / 2; 
-        intensity = 0.1f + 0.9f * intensity; // Ensure minimum brightness to avoid total darkness
+        intensity = (intensity + 0.5f) / 1.5f; 
+        intensity = 0.1f + 0.4f * intensity; // Ensure minimum brightness to avoid total darkness
 
         // Update light color and position based on time of day
         float yPos = intensity * 100; // Height of the light varies with intensity
         lightPosition.put(0.0f).put(yPos).put(0.0f).put(1.0f).flip();
 
         // Change light color from warm (day) to cool (night)
-        float r = 0.3f + 0.7f * intensity; // Red component
-        float g = 0.3f + 0.7f * intensity; // Green component
-        float b = 0.5f + 0.5f * intensity; // Blue component
-        
-        
-            whiteLight.put(r+5).put(g+5).put(b+5).put(1.0f).flip();
+        float r = 2.5f + 3.5f * intensity; // Red component
+        float g = 2.5f + 3.5f * intensity; // Green component
+        float b = 2.5f + 3.5f * intensity; // Blue component
+         
+        whiteLight.put(r).put(g).put(b).put(1.0f).flip();
         
 
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
